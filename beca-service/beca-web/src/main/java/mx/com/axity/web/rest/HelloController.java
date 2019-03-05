@@ -51,11 +51,19 @@ public class HelloController {
         UserTO findUserByIdResponse = this.IbecaFacade.findUserById((long) id);
         return new ResponseEntity<>( findUserByIdResponse,HttpStatus.OK);
     }
-    @RequestMapping(value = "/user/s", method = RequestMethod.POST, produces = "application/json")
+
+    @RequestMapping(value = "/user", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity saveUser(@RequestBody UserTO userTO) {
         this.IbecaFacade.saveUser(userTO);
         return new ResponseEntity<>( HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/user", method = RequestMethod.PUT, produces = "application/json")
+    public ResponseEntity updateUser(@RequestBody UserTO userTO) {
+        this.IbecaFacade.updateUser(userTO);
+        return new ResponseEntity<>( HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/test", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity test() {
         LOG.info("Se invoca /test");

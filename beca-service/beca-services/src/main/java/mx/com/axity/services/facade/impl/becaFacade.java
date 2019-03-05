@@ -53,4 +53,10 @@ public class becaFacade implements IbecaFacade {
         return userTO;
     }
 
+    @Override
+    public void updateUser(UserTO userTO) {
+        UserDO userDO = this.modelMapper.map(userTO,UserDO.class);
+        this.becaService.updateUser(userDO);
+    }
+
 }

@@ -17,4 +17,5 @@ public interface IbecaService {
     void deleteUser(Long id);
     void saveUser(UserDO userDO);
     UserDO findUserById(Long id);
+    void updateUser(UserDO userDO);
 }
