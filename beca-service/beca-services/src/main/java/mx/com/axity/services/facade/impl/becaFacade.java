@@ -46,4 +46,11 @@ public class becaFacade implements IbecaFacade {
         this.becaService.saveUser(userDO);
     }
 
+    @Override
+    public UserTO findUserById(Long id) {
+        UserDO userDO = this.becaService.findUserById(id);
+        UserTO userTO = this.modelMapper.map(userDO, UserTO.class);
+        return userTO;
+    }
+
 }

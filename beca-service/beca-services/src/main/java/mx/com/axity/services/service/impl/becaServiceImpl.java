@@ -61,5 +61,13 @@ public class becaServiceImpl implements IbecaService {
         this.userDAO.save(userDO);
     }
 
+    @Override
+    public UserDO findUserById(Long id) {
+           if (this.userDAO.existsById(id)){
+               return  this.userDAO.findById(id).get();
+           }
+           return new UserDO("Not found","Not found",0);
+    }
+
 
 }
