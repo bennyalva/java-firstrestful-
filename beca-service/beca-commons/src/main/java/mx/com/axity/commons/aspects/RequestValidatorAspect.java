@@ -42,7 +42,7 @@ public class RequestValidatorAspect {
                 errorTo.setErrorCode(50);
                 errorTo.setErrorMessage("Ocurrió un error en el servidor");
             }
-           return new ResponseEntity<ErrorTo>(errorTo, HttpStatus.OK);
+           return new ResponseEntity<ErrorTo>(errorTo, HttpStatus.NOT_FOUND);
         }
     }
 }
