@@ -60,8 +60,11 @@ public class HelloController {
 
     @RequestMapping(value = "/user", method = RequestMethod.PUT, produces = "application/json")
     public ResponseEntity updateUser(@RequestBody UserTO userTO) {
-        this.IbecaFacade.updateUser(userTO);
-        return new ResponseEntity<>( HttpStatus.OK);
+        if(userTO.getId() != 0){
+            this.IbecaFacade.updateUser(userTO);
+            return new ResponseEntity<>( HttpStatus.OK);
+        }
+        return new ResponseEntity<>( HttpStatus.BAD_REQUEST);
     }
 
     @RequestMapping(value = "/test", method = RequestMethod.GET, produces = "application/json")
