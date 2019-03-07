@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/firstapi
+    url: jdbc:postgresql://10.11.1.10:5430/firstapi
     username: postgres
     password: benny100
     driver-class-name: org.postgresql.Driver
