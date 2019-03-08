@@ -1,16 +1,15 @@
 package mx.com.axity.services.service.impl;
 
-import mx.com.axity.commons.to.UserTO;
+import mx.com.axity.model.LoginDO;
 import mx.com.axity.model.UserDO;
+import mx.com.axity.persistence.LoginDAO;
 import mx.com.axity.persistence.UserDAO;
 import mx.com.axity.services.service.IbecaService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.lang.reflect.Type;
 import java.util.List;
 
 @Service
@@ -19,7 +18,9 @@ public class becaServiceImpl implements IbecaService {
     static final Logger LOG = LogManager.getLogger(becaServiceImpl.class);
 
     @Autowired
-    UserDAO userDAO;// para cceder a los metodos de save delete o find
+    UserDAO userDAO;// para cceder a los metodos de save delete o find del CrudRepositorio
+    @Autowired
+    LoginDAO loginDAO;
 
     @Autowired
     ModelMapper modelMapper;
@@ -70,6 +71,36 @@ public class becaServiceImpl implements IbecaService {
     public void updateUser(UserDO userDO) {
        // this.userDAO.findById(userDO.getId()).get();
         this.userDAO.save(userDO);
+    }
+
+    @Override
+    public List<LoginDO> getAllLogin() {
+        return (List<LoginDO>) this.loginDAO.findAll();
+    }
+
+    @Override
+    public void deleteLogin(Long id) {
+        this.loginDAO.deleteById(id);
+    }
+
+    @Override
+    public void saveLogin(LoginDO loginDO) {
+        this.loginDAO.save(loginDO);
+    }
+
+    @Override
+    public LoginDO findLoginById(Long id) {
+        return this.loginDAO.findById(id).get();
+    }
+
+    @Override
+    public void updateLogin(LoginDO loginDO) {
+        this.loginDAO.save(loginDO);
+    }
+
+    @Override
+    public LoginDO validateUser(String userName) {
+        return this.loginDAO.findloginByUsername(userName);
     }
 
 

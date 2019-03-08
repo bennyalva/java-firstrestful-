@@ -1,6 +1,7 @@
 package mx.com.axity.web.rest;
 
 import io.swagger.annotations.Api;
+import mx.com.axity.commons.to.LoginTO;
 import mx.com.axity.commons.to.UserTO;
 import mx.com.axity.services.facade.IbecaFacade;
 import org.apache.logging.log4j.LogManager;
@@ -66,7 +67,56 @@ public class HelloController {
         }
         return new ResponseEntity<>( HttpStatus.BAD_REQUEST);
     }
+    //// examen
+    @RequestMapping(value = "/logins", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<List<LoginTO>> getAllLogin() {
+        LOG.info("Se invoca /logins");
+        List<LoginTO> logins = this.IbecaFacade.getAllLogin();
+        return new ResponseEntity<>(logins, HttpStatus.OK);
+    }
 
+    @RequestMapping(value = "/login", method = RequestMethod.DELETE, produces = "application/json")
+    public ResponseEntity deleteLogin(@RequestParam(value = "id" ) int id) {
+        LOG.info("Login id");
+        LOG.info(id);
+        this.IbecaFacade.deleteLogin((long) id);
+        return new ResponseEntity<>( HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<LoginTO> findLoginById(@RequestParam(value = "id" ) int id) {
+        LOG.info("Login id F::");
+        LOG.info(id);
+        LoginTO findLoginByIdResponse = this.IbecaFacade.findLoginById((long) id);
+        return new ResponseEntity<>( findLoginByIdResponse,HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity saveLogin(@RequestBody LoginTO loginTO) {
+
+        //cuando guarde debe se ver si ya existe, si existe return bad request
+        this.IbecaFacade.saveLogin(loginTO);
+        return new ResponseEntity<>( HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.PUT, produces = "application/json")
+    public ResponseEntity updateLogin(@RequestBody LoginTO loginTO) {
+        if(loginTO.getId() != 0){
+            this.IbecaFacade.updateLogin(loginTO);
+            return new ResponseEntity<>( HttpStatus.OK);
+        }
+        return new ResponseEntity<>( HttpStatus.BAD_REQUEST);
+    }
+
+    @RequestMapping(value = "/login/validate", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<LoginTO> validateLoginByUserName(@RequestParam(value = "username" ) String userName,@RequestParam(value = "password") String password) {
+        LOG.info("Validate Login Name F::");
+        LOG.info(userName);
+        LOG.info(password);
+        LoginTO validateLoginByUserNamen = this.IbecaFacade.validateUser(userName);
+        return new ResponseEntity<>( validateLoginByUserNamen,HttpStatus.OK);
+    }
+    ///termina
     @RequestMapping(value = "/test", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity test() {
         LOG.info("Se invoca /test");

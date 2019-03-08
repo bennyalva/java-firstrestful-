@@ -1,5 +1,6 @@
 package mx.com.axity.services.facade;
 
+import mx.com.axity.commons.to.LoginTO;
 import mx.com.axity.commons.to.UserTO;
 import mx.com.axity.model.UserDO;
 
@@ -12,4 +13,11 @@ public interface IbecaFacade {
     void saveUser(UserTO userTO);
     UserTO findUserById(Long id);
     void updateUser(UserTO userTO);
+
+    List<LoginTO> getAllLogin();
+    void deleteLogin(Long id);
+    void saveLogin(LoginTO loginTO);
+    LoginTO findLoginById(Long id);
+    void updateLogin(LoginTO loginTO);
+    LoginTO validateUser(String userName);
 }
