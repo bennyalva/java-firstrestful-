@@ -93,11 +93,11 @@ public class becaFacade implements IbecaFacade {
         this.becaService.updateLogin(loginDO);
     }
 
-    @Override
+   /* @Override
     public LoginTO validateUser(String userName) {
         LoginDO loginDO = this.becaService.validateUser(userName);
         return null;
-    }
+    }*/
 
 
 }

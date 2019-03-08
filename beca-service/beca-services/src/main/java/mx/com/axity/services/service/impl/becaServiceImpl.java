@@ -98,10 +98,10 @@ public class becaServiceImpl implements IbecaService {
         this.loginDAO.save(loginDO);
     }
 
-    @Override
+    /*@Override
     public LoginDO validateUser(String userName) {
-        return this.loginDAO.findloginByUsername(userName);
-    }
+        return this.loginDAO.validateUsername(userName);
+    }*/
 
 
 }

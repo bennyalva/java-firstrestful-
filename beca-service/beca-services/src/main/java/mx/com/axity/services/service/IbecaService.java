@@ -26,5 +26,5 @@ public interface IbecaService {
     LoginDO findLoginById(Long id);
     void updateLogin(LoginDO loginDO);
 
-    LoginDO validateUser(String userName);
+   // LoginDO validateUser(String userName);
 }

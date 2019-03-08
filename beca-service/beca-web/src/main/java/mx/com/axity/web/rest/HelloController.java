@@ -108,14 +108,21 @@ public class HelloController {
         return new ResponseEntity<>( HttpStatus.BAD_REQUEST);
     }
 
-    @RequestMapping(value = "/login/validate", method = RequestMethod.GET, produces = "application/json")
+    /*@RequestMapping(value = "/login/validate", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity<LoginTO> validateLoginByUserName(@RequestParam(value = "username" ) String userName,@RequestParam(value = "password") String password) {
         LOG.info("Validate Login Name F::");
         LOG.info(userName);
         LOG.info(password);
         LoginTO validateLoginByUserNamen = this.IbecaFacade.validateUser(userName);
-        return new ResponseEntity<>( validateLoginByUserNamen,HttpStatus.OK);
-    }
+        if (userName.isEmpty() && password.isEmpty()){
+            if(userName == validateLoginByUserNamen.getUser() && password == validateLoginByUserNamen.getPassword() ){
+                return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            }else {
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }*/
     ///termina
     @RequestMapping(value = "/test", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity test() {

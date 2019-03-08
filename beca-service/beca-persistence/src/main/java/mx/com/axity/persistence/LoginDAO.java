@@ -4,5 +4,6 @@ import mx.com.axity.model.LoginDO;
 import org.springframework.data.repository.CrudRepository;
 
 public interface LoginDAO extends CrudRepository<LoginDO,Long> {
-  LoginDO findloginByUsername(String username);
+
+  LoginDO findLofinByUser(String username);
 }

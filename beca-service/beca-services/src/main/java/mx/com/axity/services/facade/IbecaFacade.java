@@ -19,5 +19,5 @@ public interface IbecaFacade {
     void saveLogin(LoginTO loginTO);
     LoginTO findLoginById(Long id);
     void updateLogin(LoginTO loginTO);
-    LoginTO validateUser(String userName);
+    //LoginTO validateUser(String userName);
 }
